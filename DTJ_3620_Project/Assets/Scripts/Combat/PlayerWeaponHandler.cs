@@ -42,6 +42,11 @@ public class PlayerWeaponHandler : MonoBehaviour
             _weapon.HitChance = Mathf.Clamp(_weapon.HitChance, 25, 100);
         }
     }
+
+    internal int GetHitChance(int _index)
+    {
+        return _weapons[_index].HitChance;
+    }
 }
 
 [System.Serializable]
