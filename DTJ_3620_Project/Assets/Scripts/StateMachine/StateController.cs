@@ -1,0 +1,43 @@
+using System.Collections;
+using UnityEngine;
+
+public class StateController : MonoBehaviour
+{
+    [SerializeField] Vector2 _walkingDurationRange = new(2f, 4f);
+
+    [Header("// DEBUG")]
+    [SerializeField] string _currentStateName = null;
+
+    private StateMachine _machine;
+
+    private void Start()
+    {
+        _machine = new StateMachine();
+
+        _machine.ChangeState(new IdleState(), this);
+    }
+
+    private void Update()
+    {
+        _machine.Update();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _machine.ChangeState(new WalkingState(), this);
+        }
+
+        _currentStateName = _machine.GetCurrentStateName();
+    }
+
+    internal void PlayWalkingTimer()
+    {
+        StartCoroutine(WalkingRoutine());
+    }
+
+    private IEnumerator WalkingRoutine()
+    {
+        var _walkingDuration = Random.Range(_walkingDurationRange.x, _walkingDurationRange.y);
+        yield return new WaitForSeconds(_walkingDuration);
+        _machine.ChangeState(new CombatState(), this);
+    }
+}
