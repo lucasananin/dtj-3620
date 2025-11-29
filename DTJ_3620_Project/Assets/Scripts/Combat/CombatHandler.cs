@@ -1,14 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CombatHandler : MonoBehaviour
 {
     //[SerializeField] Button endTurnButton;
     [SerializeField] CanvasGroup _canvas = null;
+    [SerializeField] PlayerData _playerData = default;
+    [Space]
+    [SerializeField] DamageDisplay _damageUI = null;
+    [Space]
     [SerializeField] float _firstDuration = 2f;
     [SerializeField] float _secondDuration = 2f;
-    [SerializeField] PlayerData _playerData = default;
     [SerializeField] EnemyData[] _enemies = null;
 
     private EnemyData _enemyData = null;
@@ -23,6 +27,8 @@ public class CombatHandler : MonoBehaviour
 
     [Header("// DEBUG")]
     [SerializeField] Turn currentTurn = Turn.Player;
+
+    public Turn CurrentTurn { get => currentTurn; }
 
     void Start()
     {
@@ -74,6 +80,7 @@ public class CombatHandler : MonoBehaviour
             var _damage = Random.Range(_enemyData.DamageRange.x, _enemyData.DamageRange.y);
             var _bonus = _playerData.AttackType == _enemyData.Weakness ? 3 : 1;
             _enemyHealth.TakeDamage(_damage * _bonus);
+            _damageUI.Play($"{_damage * _bonus}", _bonus == 1 ? Color.white : Color.yellow);
             Debug.Log("Player Hit");
 
             if (!_enemyHealth.IsAlive())
@@ -87,6 +94,7 @@ public class CombatHandler : MonoBehaviour
         }
         else
         {
+            _damageUI.Play("Miss", Color.white);
             Debug.Log("Player Missed");
         }
 
@@ -115,10 +123,12 @@ public class CombatHandler : MonoBehaviour
         {
             var _damage = Random.Range(_enemyData.DamageRange.x, _enemyData.DamageRange.y);
             _playerHealth.TakeDamage(_damage);
+            _damageUI.Play($"{_damage}", Color.red);
             Debug.Log("Enemy Hit");
         }
         else
         {
+            _damageUI.Play("Miss", Color.red);
             Debug.Log("Enemy Missed");
         }
 
