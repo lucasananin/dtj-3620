@@ -11,26 +11,20 @@ public class CombatState : IState
 
     public void OnEnter()
     {
-        // spawn enemy.
-        // show combat ui.
-        // start turn system.
+        _controller.StartCombat();
     }
 
     public void OnExit()
     {
-        // hide combat ui.
+        //_controller.EndCombat();
     }
 
     public void OnUpdate()
     {
-        // check turns.
-        // if enemy turn, enemy attacks.
-        // if player turn, wait player input.
-        // combat ui disable = isEnemyTurn.
     }
 
     public string GetStateName()
     {
-        return $"Walking";
+        return $"Combat";
     }
 }

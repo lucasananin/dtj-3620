@@ -1,9 +1,13 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class StateController : MonoBehaviour
 {
     [SerializeField] Vector2 _walkingDurationRange = new(2f, 4f);
+
+    [Header("// REFERENCES")]
+    [SerializeField] CombatHandler _combat = null;
 
     [Header("// DEBUG")]
     [SerializeField] string _currentStateName = null;
@@ -15,16 +19,17 @@ public class StateController : MonoBehaviour
         _machine = new StateMachine();
 
         _machine.ChangeState(new IdleState(), this);
+        PlayWalkingState();
     }
 
     private void Update()
     {
         _machine.Update();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _machine.ChangeState(new WalkingState(), this);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _machine.ChangeState(new WalkingState(), this);
+        //}
 
         _currentStateName = _machine.GetCurrentStateName();
     }
@@ -40,4 +45,18 @@ public class StateController : MonoBehaviour
         yield return new WaitForSeconds(_walkingDuration);
         _machine.ChangeState(new CombatState(), this);
     }
+
+    internal void StartCombat()
+    {
+        _combat.StartCombat();
+    }
+
+    public void PlayWalkingState()
+    {
+        _machine.ChangeState(new WalkingState(), this);
+    }
+
+    //public void EndCombat()
+    //{
+    //}
 }

@@ -1,15 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class CombatHandler : MonoBehaviour
 {
-    //[SerializeField] Button endTurnButton;
     [SerializeField] CanvasGroup _canvas = null;
     [SerializeField] PlayerData _playerData = default;
     [Space]
+    [SerializeField] CanvasView _view = null;
     [SerializeField] DamageDisplay _damageUI = null;
+    [SerializeField] StateController _state = null;
     [Space]
     [SerializeField] float _firstDuration = 2f;
     [SerializeField] float _secondDuration = 2f;
@@ -33,15 +32,14 @@ public class CombatHandler : MonoBehaviour
     void Start()
     {
         _playerHealth = FindFirstObjectByType<PlayerHealth>();
-        //endTurnButton.onClick.AddListener(PlayerAttack);
 
         UpdateUI();
-        StartCombat();
+        //StartCombat();
     }
 
     public void StartCombat()
     {
-        // show combat ui.
+        _view.Show();
 
         var _index = Random.Range(0, _enemies.Length);
         _enemyData = _enemies[_index];
@@ -56,7 +54,6 @@ public class CombatHandler : MonoBehaviour
     {
         currentTurn = Turn.Player;
         UpdateUI();
-        //Debug.Log("Player turn started.");
     }
 
     public void PlayerAttack()
@@ -72,7 +69,6 @@ public class CombatHandler : MonoBehaviour
 
         yield return new WaitForSeconds(_firstDuration);
 
-        //Debug.Log("Player attacked.");
         var _hasHit = Random.Range(0, 100) < _playerData.HitChance;
 
         if (_hasHit)
@@ -85,10 +81,10 @@ public class CombatHandler : MonoBehaviour
 
             if (!_enemyHealth.IsAlive())
             {
-                // destroy enemy prefab.
                 // wait enemy death animation.
-                // hide combat ui.
-                // start walking state.
+                yield return new WaitForSeconds(_secondDuration);
+                _state.PlayWalkingState();
+                _view.Hide();
                 yield break;
             }
         }
@@ -112,11 +108,8 @@ public class CombatHandler : MonoBehaviour
 
     private IEnumerator EnemyTurnRoutine()
     {
-        //Debug.Log("Enemy turn started.");
-
         yield return new WaitForSeconds(_firstDuration);
 
-        //Debug.Log("Enemy attacked.");
         var _hasHit = Random.Range(0, 100) < _enemyData.HitChance;
 
         if (_hasHit)
@@ -134,13 +127,14 @@ public class CombatHandler : MonoBehaviour
 
         if (!_playerHealth.IsAlive())
         {
-            // endgame.
+            // GAME OVER.
+            yield return new WaitForSeconds(_secondDuration);
+            _view.Hide();
             yield break;
         }
 
         yield return new WaitForSeconds(_secondDuration);
 
-        //Debug.Log("Enemy finished their turn.");
         StartPlayerTurn();
     }
 
