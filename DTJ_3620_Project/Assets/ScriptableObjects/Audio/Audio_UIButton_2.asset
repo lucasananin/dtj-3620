@@ -22,8 +22,8 @@ MonoBehaviour:
   _ignoreListenerPause: 0
   _loop: 0
   _priorityLevel: 128
-  _volume: 0.8
-  _pitchRange: {x: 0.8, y: 1.2}
+  _volume: 0.5
+  _pitchRange: {x: 1.5, y: 1.5}
   _panStereo: 0
   _reverbZoneMix: 1
   _time: 0

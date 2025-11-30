@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d518180a961b5144a5c148621b967b7, type: 3}
   m_Name: Audio_Hit_Enemy
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: feb42b7cf6595f6428763a23249a5fce, type: 3}
+  _clip: {fileID: 8300000, guid: 79332c606945e984b9111578aa8da91d, type: 3}
   _output: {fileID: 0}
   _isMusic: 0
   _bypassEffects: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   _ignoreListenerPause: 0
   _loop: 0
   _priorityLevel: 128
-  _volume: 0.8
+  _volume: 1
   _pitchRange: {x: 0.8, y: 1.2}
   _panStereo: 0
   _reverbZoneMix: 1
