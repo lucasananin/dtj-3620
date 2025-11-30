@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2816358721137348382}
   - component: {fileID: 2517323148024182006}
+  - component: {fileID: 8703013370416338337}
   m_Layer: 0
   m_Name: Enemy_Base
   m_TagString: Untagged
@@ -47,7 +48,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isInvincible: 0
   _maxHealth: 3
+  OnHurt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8703013370416338337}
+        m_TargetAssemblyTypeName: HurtDOShake, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _currentHealth: 0
+--- !u!114 &8703013370416338337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718739182557859421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99596a09f791484e9ce15822c832926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _t: {fileID: 8147499831438483453}
+  _duration: 0.2
+  _strength: {x: -0.1, y: 0, z: 0}
+  _vibrato: 50
 --- !u!1 &6664446085400245513
 GameObject:
   m_ObjectHideFlags: 0
