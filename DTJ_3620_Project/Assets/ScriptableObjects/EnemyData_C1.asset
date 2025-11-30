@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c73cb6724ba169745b197e4bdb08ebb1, type: 3}
-  m_Name: EnemyData_1
+  m_Name: EnemyData_C1
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2286777266636907461, guid: 37e0a23ca9494df44a12b4909a5d24f2, type: 3}
   _damageRange: {x: 1, y: 1}
-  _hitChance: 90
-  _weakness: 0
+  _hitChance: 50
+  _weakness: 2
+  _displayName: Living Shadow

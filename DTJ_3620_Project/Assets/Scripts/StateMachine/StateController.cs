@@ -5,6 +5,7 @@ using UnityEngine;
 public class StateController : MonoBehaviour
 {
     [SerializeField] Vector2 _walkingDurationRange = new(2f, 4f);
+    [SerializeField] float _finalWalkDuration = 3f;
 
     [Header("// REFERENCES")]
     [SerializeField] CombatHandler _combat = null;
@@ -20,7 +21,7 @@ public class StateController : MonoBehaviour
         _machine = new StateMachine();
 
         _machine.ChangeState(new IdleState(), this);
-        PlayWalkingState();
+        //PlayWalkingState();
     }
 
     private void Update()
@@ -42,6 +43,13 @@ public class StateController : MonoBehaviour
 
     private IEnumerator WalkingRoutine()
     {
+        if (CombatHandler.Instance.HasDefeatedAllEnemies())
+        {
+            yield return new WaitForSeconds(_finalWalkDuration);
+            EndgamePanel.Instance.Init(true);
+            yield break;
+        }
+
         var _walkingDuration = Random.Range(_walkingDurationRange.x, _walkingDurationRange.y);
         yield return new WaitForSeconds(_walkingDuration);
         _machine.ChangeState(new CombatState(), this);

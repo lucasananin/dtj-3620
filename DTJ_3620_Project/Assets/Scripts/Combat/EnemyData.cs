@@ -7,11 +7,13 @@ public class EnemyData : ScriptableObject
     [SerializeField] Vector2Int _damageRange = new(1, 2);
     [SerializeField] int _hitChance = 50;
     [SerializeField] DamageType _weakness = default;
+    [SerializeField] string _displayName = null;
 
     public GameObject Prefab { get => _prefab; }
     public Vector2Int DamageRange { get => _damageRange; }
     public int HitChance { get => _hitChance; }
     public DamageType Weakness { get => _weakness; }
+    public string DisplayName { get => _displayName; }
 }
 
 public enum DamageType

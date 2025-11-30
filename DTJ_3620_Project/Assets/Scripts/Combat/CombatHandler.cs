@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class CombatHandler : MonoBehaviour
+public class CombatHandler : Singleton<CombatHandler>
 {
     [SerializeField] CanvasGroup _canvas = null;
     [SerializeField] PlayerData _playerData = default;
@@ -9,10 +11,11 @@ public class CombatHandler : MonoBehaviour
     [SerializeField] CanvasView _view = null;
     [SerializeField] DamageDisplay _damageUI = null;
     [SerializeField] StateController _state = null;
+    [SerializeField] TextMeshProUGUI _enemyName = null;
     [Space]
     [SerializeField] float _firstDuration = 2f;
     [SerializeField] float _secondDuration = 2f;
-    [SerializeField] EnemyData[] _enemies = null;
+    [SerializeField] List<EnemyData> _enemies = null;
 
     private EnemyData _enemyData = null;
     private EnemyHealth _enemyHealth = null;
@@ -39,15 +42,17 @@ public class CombatHandler : MonoBehaviour
 
     public void StartCombat()
     {
-        _view.Show();
-
-        var _index = Random.Range(0, _enemies.Length);
+        var _index = Random.Range(0, _enemies.Count);
         _enemyData = _enemies[_index];
+        _enemies.RemoveAt(_index);
 
         var _instance = Instantiate(_enemyData.Prefab, Vector3.zero, Quaternion.identity);
         _enemyHealth = _instance.GetComponent<EnemyHealth>();
 
         StartPlayerTurn();
+
+        _enemyName.text = $"{_enemyData.DisplayName}";
+        _view.Show();
     }
 
     void StartPlayerTurn()
@@ -77,7 +82,6 @@ public class CombatHandler : MonoBehaviour
             var _bonus = _playerData.AttackType == _enemyData.Weakness ? 3 : 1;
             _enemyHealth.TakeDamage(_damage * _bonus);
             _damageUI.Play($"{_damage * _bonus}", _bonus == 1 ? Color.white : Color.yellow);
-            Debug.Log("Player Hit");
 
             if (!_enemyHealth.IsAlive())
             {
@@ -91,7 +95,6 @@ public class CombatHandler : MonoBehaviour
         else
         {
             _damageUI.Play("Miss", Color.white);
-            Debug.Log("Player Missed");
         }
 
         yield return new WaitForSeconds(_secondDuration);
@@ -117,19 +120,18 @@ public class CombatHandler : MonoBehaviour
             var _damage = Random.Range(_enemyData.DamageRange.x, _enemyData.DamageRange.y);
             _playerHealth.TakeDamage(_damage);
             _damageUI.Play($"{_damage}", Color.red);
-            Debug.Log("Enemy Hit");
         }
         else
         {
             _damageUI.Play("Miss", Color.red);
-            Debug.Log("Enemy Missed");
         }
 
         if (!_playerHealth.IsAlive())
         {
-            // GAME OVER.
             yield return new WaitForSeconds(_secondDuration);
             _view.Hide();
+            yield return new WaitForSeconds(_secondDuration);
+            EndgamePanel.Instance.Init(false);
             yield break;
         }
 
@@ -142,5 +144,10 @@ public class CombatHandler : MonoBehaviour
     {
         // Player can only press the button during their own turn
         _canvas.interactable = (currentTurn == Turn.Player);
+    }
+
+    public bool HasDefeatedAllEnemies()
+    {
+        return _enemies.Count <= 0;
     }
 }
