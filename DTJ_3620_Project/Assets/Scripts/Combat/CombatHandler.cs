@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatHandler : Singleton<CombatHandler>
 {
@@ -20,6 +21,11 @@ public class CombatHandler : Singleton<CombatHandler>
     [SerializeField] float _firstDuration = 2f;
     [SerializeField] float _secondDuration = 2f;
     [SerializeField] List<EnemyData> _enemies = null;
+
+    [Header("// TIMER")]
+    [SerializeField] Image _fill = null;
+    [SerializeField] float _decisionTime = 7f;
+    [SerializeField] float _timer = 0f;
 
     private EnemyData _enemyData = null;
     private EnemyHealth _enemyHealth = null;
@@ -44,6 +50,22 @@ public class CombatHandler : Singleton<CombatHandler>
         //StartCombat();
     }
 
+    private void Update()
+    {
+        if (!_view.IsVisible()) return;
+        if (!_canvas.interactable) return;
+        if (currentTurn != Turn.Player) return;
+
+        _timer -= Time.deltaTime;
+
+        if (_timer < 0)
+        {
+            StartEnemyTurn();
+        }
+
+        _fill.fillAmount = _timer / _decisionTime;
+    }
+
     public void StartCombat()
     {
         var _index = Random.Range(0, _enemies.Count);
@@ -61,6 +83,7 @@ public class CombatHandler : Singleton<CombatHandler>
 
     void StartPlayerTurn()
     {
+        _timer = _decisionTime;
         currentTurn = Turn.Player;
         UpdateUI();
     }
@@ -110,6 +133,7 @@ public class CombatHandler : Singleton<CombatHandler>
 
     void StartEnemyTurn()
     {
+        _timer = _decisionTime;
         currentTurn = Turn.Enemy;
         UpdateUI();
         StartCoroutine(EnemyTurnRoutine());
