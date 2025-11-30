@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2286777266636907461, guid: 37e0a23ca9494df44a12b4909a5d24f2, type: 3}
   _damageRange: {x: 1, y: 1}
-  _hitChance: 50
+  _hitChance: 90
   _weakness: 0
