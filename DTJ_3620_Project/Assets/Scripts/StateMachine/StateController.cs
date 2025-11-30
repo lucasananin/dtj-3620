@@ -8,6 +8,7 @@ public class StateController : MonoBehaviour
 
     [Header("// REFERENCES")]
     [SerializeField] CombatHandler _combat = null;
+    [SerializeField] BackgroundMover _environment = null;
 
     [Header("// DEBUG")]
     [SerializeField] string _currentStateName = null;
@@ -54,6 +55,16 @@ public class StateController : MonoBehaviour
     public void PlayWalkingState()
     {
         _machine.ChangeState(new WalkingState(), this);
+    }
+
+    public void MoveEnvironment()
+    {
+        _environment.Play();
+    }
+
+    public void StopEnvironment()
+    {
+        _environment.Stop();
     }
 
     //public void EndCombat()

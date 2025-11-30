@@ -11,6 +11,7 @@ public class CombatState : IState
 
     public void OnEnter()
     {
+        _controller.StopEnvironment();
         _controller.StartCombat();
     }
 

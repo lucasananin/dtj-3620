@@ -11,8 +11,8 @@ public class WalkingState : IState
 
     public void OnEnter()
     {
+        _controller.MoveEnvironment();
         _controller.PlayWalkingTimer();
-        // move environment.
     }
 
     public void OnExit()
