@@ -13,6 +13,10 @@ public class CombatHandler : Singleton<CombatHandler>
     [SerializeField] StateController _state = null;
     [SerializeField] TextMeshProUGUI _enemyName = null;
     [Space]
+    [SerializeField] AudioPlayer _hitEnemySfx = null;
+    [SerializeField] AudioPlayer _hitPlayerSfx = null;
+    [SerializeField] AudioPlayer _evadeSfx = null;
+    [Space]
     [SerializeField] float _firstDuration = 2f;
     [SerializeField] float _secondDuration = 2f;
     [SerializeField] List<EnemyData> _enemies = null;
@@ -82,6 +86,7 @@ public class CombatHandler : Singleton<CombatHandler>
             var _bonus = _playerData.AttackType == _enemyData.Weakness ? 3 : 1;
             _enemyHealth.TakeDamage(_damage * _bonus);
             _damageUI.Play($"{_damage * _bonus}", _bonus == 1 ? Color.white : Color.yellow);
+            _hitEnemySfx.Play();
 
             if (!_enemyHealth.IsAlive())
             {
@@ -95,6 +100,7 @@ public class CombatHandler : Singleton<CombatHandler>
         else
         {
             _damageUI.Play("Miss", Color.white);
+            _evadeSfx.Play();
         }
 
         yield return new WaitForSeconds(_secondDuration);
@@ -120,10 +126,12 @@ public class CombatHandler : Singleton<CombatHandler>
             var _damage = Random.Range(_enemyData.DamageRange.x, _enemyData.DamageRange.y);
             _playerHealth.TakeDamage(_damage);
             _damageUI.Play($"{_damage}", Color.red);
+            _hitPlayerSfx.Play();
         }
         else
         {
             _damageUI.Play("Miss", Color.red);
+            _evadeSfx.Play();
         }
 
         if (!_playerHealth.IsAlive())

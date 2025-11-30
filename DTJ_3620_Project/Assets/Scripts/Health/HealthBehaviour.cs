@@ -6,6 +6,7 @@ public class HealthBehaviour : MonoBehaviour
     [SerializeField] protected bool _isInvincible = false;
     [SerializeField] protected int _maxHealth = 100;
     [SerializeField] UnityEvent OnHurt = null;
+    [SerializeField] UnityEvent OnDie = null;
     //[SerializeField] protected int _defaultMaxHealth = 100;
 
     [Header("// READONLY")]

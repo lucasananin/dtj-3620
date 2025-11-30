@@ -10,6 +10,7 @@ public class EnemyHealth : HealthBehaviour
         base.OnDead_();
         //gameObject.SetActive(false);
         Destroy(gameObject);
+        // fade and then destroy.
         OnEnemyDie?.Invoke(this);
     }
 }
