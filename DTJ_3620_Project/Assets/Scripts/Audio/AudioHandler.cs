@@ -28,6 +28,7 @@ public class AudioHandler : MonoBehaviour
     private AudioSource PlayAudio(AudioSO _so, Vector3 _position)
     {
         var _source = _so.IsMusic ? _sources[0] : GetAvailableSource();
+        _source.DOComplete();
         _so.ApplyTo(_source);
         _source.transform.position = _position;
         _source.Play();

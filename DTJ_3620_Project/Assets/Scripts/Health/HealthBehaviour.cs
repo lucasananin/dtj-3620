@@ -57,6 +57,7 @@ public class HealthBehaviour : MonoBehaviour
     {
         _currentHealth = 0;
         OnDead?.Invoke();
+        OnDie?.Invoke();
     }
 
     protected virtual void OnDamageTaken_()
