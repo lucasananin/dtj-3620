@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 69b41a321dde5ba4699b1eb3b31e05cd, type: 2}
   _increaseRange: {x: 4, y: 8}
-  _decreaseRange: {x: 20, y: 24}
+  _decreaseRange: {x: 12, y: 16}
   _weapons:
   - _type: 0
     _hitChance: 100
@@ -634,7 +634,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -1974,7 +1974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &698767899
 MonoBehaviour:
   m_ObjectHideFlags: 0
