@@ -7,6 +7,11 @@ public class PlayerHealth : HealthBehaviour
 
     public static event UnityAction OnPlayerHurt = null;
 
+    protected override void Awake()
+    {
+        RestoreHealth(50);
+    }
+
     protected override void OnDamageTaken_()
     {
         base.OnDamageTaken_();

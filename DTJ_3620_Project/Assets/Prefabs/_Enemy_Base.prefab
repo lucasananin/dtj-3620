@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isInvincible: 0
-  _maxHealth: 3
+  _maxHealth: 2
   OnHurt:
     m_PersistentCalls:
       m_Calls:

@@ -16,7 +16,7 @@ public class HealthBehaviour : MonoBehaviour
     public event UnityAction OnDead = null;
     public event UnityAction OnRestored = null;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         RestoreAllHealth();
     }

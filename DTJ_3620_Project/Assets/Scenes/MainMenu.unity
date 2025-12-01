@@ -178,10 +178,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<color=yellow>Team</color>
 
-    Lucasananin - Programming/art
+    Lucasananin - Programming/Art
 
     Lucy
-    - Music
+    - Music/Audio
 
     Scapegoat - Lead
 
@@ -191,7 +191,12 @@ MonoBehaviour:
     kenney''s
     fantasy ui borders.
 
-    kenney''s retro medieval kit.'
+    kenney''s retro medieval kit.
+
+    Thaleah PixelFont.
+
+    Google''s
+    Uncial Antiqua font.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a1b4f1d3a3b97bc40a1bf8c9e2404270, type: 2}
   m_sharedMaterial: {fileID: -2009104460312336501, guid: a1b4f1d3a3b97bc40a1bf8c9e2404270, type: 2}

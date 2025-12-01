@@ -18,6 +18,7 @@ public class CombatHandler : Singleton<CombatHandler>
     [SerializeField] AudioPlayer _hitPlayerSfx = null;
     [SerializeField] AudioPlayer _evadeSfx = null;
     [Space]
+    [SerializeField] int _bonusMultiplier = 2;
     [SerializeField] float _firstDuration = 2f;
     [SerializeField] float _secondDuration = 2f;
     [SerializeField] List<EnemyData> _enemies = null;
@@ -106,7 +107,7 @@ public class CombatHandler : Singleton<CombatHandler>
         if (_hasHit)
         {
             var _damage = Random.Range(_enemyData.DamageRange.x, _enemyData.DamageRange.y);
-            var _bonus = _playerData.AttackType == _enemyData.Weakness ? 3 : 1;
+            var _bonus = _playerData.AttackType == _enemyData.Weakness ? _bonusMultiplier : 1;
             _enemyHealth.TakeDamage(_damage * _bonus);
             _damageUI.Play($"{_damage * _bonus}", _bonus == 1 ? Color.white : Color.yellow);
             _hitEnemySfx.Play();
