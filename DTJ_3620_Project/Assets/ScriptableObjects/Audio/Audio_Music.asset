@@ -20,7 +20,7 @@ MonoBehaviour:
   _bypassReverbZones: 0
   _ignoreListenerVolume: 0
   _ignoreListenerPause: 0
-  _loop: 0
+  _loop: 1
   _priorityLevel: 128
   _volume: 1
   _pitchRange: {x: 1, y: 1}
