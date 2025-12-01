@@ -54,27 +54,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a717200199dc41c418702109431d1a5a, type: 2}
     - target: {fileID: 3718739182557859421, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
       propertyPath: m_Name
-      value: Enemy_1
+      value: Enemy_A1
       objectReference: {fileID: 0}
-    - target: {fileID: 7700115728111694980, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7700115728111694980, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7700115728111694980, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 4343838793752861670, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d18508ecc1028e488367b3974ca9b30, type: 3}
     - target: {fileID: 7700115728111694980, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7700115728111694980, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8703013370416338337, guid: bbd43b7cd05fe4544b5aaf04cab72219, type: 3}
       propertyPath: _t
