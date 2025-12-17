@@ -8564,7 +8564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d9e4a4ef1b9c94ab444b4ebec55d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneToLoad: _Playground
+  _sceneToLoad: Gameplay
   _sceneToUnload: MainMenu
   _loadOnStart: 0
   _button: {fileID: 1860055350}
